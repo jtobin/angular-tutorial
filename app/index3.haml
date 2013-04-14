@@ -1,0 +1,24 @@
+!!! 5
+%html{lang: 'en', 'ng-app' => '', 'ng-controller' => 'PhoneListCtrl'}
+  %head
+    %meta{charset: 'utf-8'}
+    %title{'ng-bind-template' => 'Google Phone Gallery: {{ query }}'} 
+      Google Phone Gallery
+    %link{rel: 'stylesheet', href: 'css/app.css'}
+    %link{rel: 'stylesheet', href: 'css/bootstrap.css'}
+    %script{src: 'lib/angular/angular.js'}
+    %script{src: 'js/controllers3.js'}
+
+  %body
+    .container-fluid
+      .row-fluid
+        .span2 
+          Search: 
+          %input{'ng-model' => 'query'}
+
+        .span10
+          %ul.phones
+            %li{'ng-repeat' => 'phone in phones | filter:query'}
+              {{ phone.name }}
+              %p {{ phone.snippett }}
+

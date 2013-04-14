@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en' ng-app='' ng-controller='PhoneListCtrl'>
+  <head>
+    <meta charset='utf-8'>
+    <title ng-bind-template='Google Phone Gallery: Ranked by {{ defaultOrderBy }}'>
+      Google Phone Gallery
+    </title>
+    <link href='css/app.css' rel='stylesheet'>
+    <link href='css/bootstrap.css' rel='stylesheet'>
+    <script src='lib/angular/angular.js'></script>
+    <script src='js/controllers5.js'></script>
+  </head>
+  <body>
+    <div class='container-fluid'>
+      <div class='row-fluid'>
+        <div class='span2'>
+          Search:
+          <input ng-model='query'>
+          Sort by:
+          <select ng-model='defaultOrderBy'>
+            <option value='name'>Alphabetical</option>
+            <option value='age'>Newest</option>
+          </select>
+        </div>
+        <div class='span10'>
+          <ul class='phones'>
+            <li ng-repeat='phone in phones | filter:query | orderBy:defaultOrderBy'>
+              {{ phone.name }}
+              <p>{{ phone.snippett }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
