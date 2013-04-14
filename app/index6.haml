@@ -1,0 +1,30 @@
+!!! 5
+%html{lang: 'en', 'ng-app' => '', 'ng-controller' => 'PhoneListCtrl'}
+  %head
+    %meta{charset: 'utf-8'}
+    %title{'ng-bind-template' => 'Google Phone Gallery: Ranked by {{ defaultOrderBy }}'} 
+      Google Phone Gallery
+    %link{rel: 'stylesheet', href: 'css/app.css'}
+    %link{rel: 'stylesheet', href: 'css/bootstrap.css'}
+    %script{src: 'lib/angular/angular.js'}
+    %script{src: 'js/controllers6.js'}
+
+  %body
+    .container-fluid
+      .row-fluid
+        .span2 
+          Search: 
+          %input{'ng-model' => 'query'}
+          Sort by:
+          %select{'ng-model' => 'defaultOrderBy'}
+            %option{value: 'name'} Alphabetical
+            %option{value: 'age'}  Newest
+
+        .span10
+          %ul.phones
+            %li.thumbnail{'ng-repeat' => 'phone in phones | filter:query | orderBy:defaultOrderBy'}
+              %a.thumb{href: '#/phones/{{ phone.id }}'}
+                %img{'ng-src' => '{{ phone.imageUrl }}'}
+              %a{href: '#/phones/{{ phone.id }}'} {{ phone.name }}
+              %p {{ phone.snippet }}
+
